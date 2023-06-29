@@ -294,7 +294,7 @@ Java技术体系的自动内存管理，最根本的目的是自动化地解决�
 
 * jps -l：当前正在运行的虚拟机进程id和全名
 * jmap -heap 进行id：生成对转储快照，有收集器名字，新生代的Eden、From、To区域和老年代内存使用情况。
-* java -XX:+PrintCommandLineFlags -version：查看当前JVM的垃圾收集器（估计JDK9就不能用了）
+* java -XX:+PrintCommandLineFlags -version：查看当前JVM的垃圾收集器
 
 #### 1. 对象优先在Eden分配
 
