@@ -7,6 +7,7 @@ public class JConsoleTestCase {
 
     /**
      * 内存占位符对象，一个OOMObject大约占64K
+     * -Xms100m -Xmx100m -XX:+UseSerialGC
      */
     static class OOMObject {
         public byte[] placeholder = new byte[64 * 1024];

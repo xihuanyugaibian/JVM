@@ -2,6 +2,8 @@ package org.fenixsoft.jvm.chapter4;
 
 /**
  * @author zzm
+ * Integer.valueOf()方法出于减少对象创建次数和节省内存的考虑，会对数值为-128-127之间的Integer对象进行缓存，如果valueOf()方法传入的参数在这个范围之内，就直接返回缓存中的对象。
+ * 这时《Java虚拟机规范》中明确要求缓存的默认值，实际值可以通过调整参数 java.lang.Integer.IntegerCache.hign这时。
  */
 public class ThreadDeadLockTestCase_2 {
 

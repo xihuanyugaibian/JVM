@@ -66,6 +66,14 @@ java.lang.Thread类新增一个getAllStackTraces方法用于获取虚拟机中�
 5. 点击菜单 Tools->Inspector 输入4中的变量地址查看地址中存放的对象。  
    Inspector展示对象头和指向对象元数据的指针（Java类型的名字、继承关系、实现接口关系、字段信息、方法信息、运行时常量池的指针、内嵌的虚方法表、接口方法表等）
 6. 通过console 使用 **revptrs 4中的地址**查看引用该对象地方，该命令不支持查找栈上的指针引用。  
-   也可以点击5中的Inspector界面下面的Compute Liveness 此时Inspector界面除了对象头和指向对象元数据的指针会多一行《Revers
-   pointers》猜测应该时引用该对象的地方。  
+   也可以点击5中的Inspector界面下面的Compute Liveness 此时Inspector界面除了对象头和指向对象元数据的指针会多一行《Revers pointers》猜测应该时引用该对象的地方。  
    点击Compute Liveness之后，好像是程序界面的开发有问题，只能展开查看Revers pointers，指向对象元数据的指针就无法展开查看了。
+
+从《Java虚拟机规范》所定义的模型来看，所有Class相关的信息都应该存放在方法区之中，但是方法区该如何实现并未做出规定，这就成了一件允许不同虚拟机自己灵活把握的事情。
+JDK7及其以后版本的HotSpot虚拟机选择把静态变量与类型在Java一端的映射Class对象存放在一起，存储在Java堆之中。即**方法区的实现实在堆中**
+
+### JConsole：Java监视与管理控制台
+
+### VisualVM:多合一故障处理工具
+[VisualVM下载](https://visualvm.github.io/)
+
