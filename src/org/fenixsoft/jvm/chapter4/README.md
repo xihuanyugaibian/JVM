@@ -51,6 +51,8 @@ jmap -h：查看命令帮助，有详细介绍。
 java.lang.Thread类新增一个getAllStackTraces方法用于获取虚拟机中所有线程的StackTraceElement对象，在实际项目中可以在管理员页面中调用这个方法以便查看线程堆栈。
 
 ## 可视化故障处理工具
+主要有Jconsole，JHSDB，VisualVM，JMC四个。  
+Jconsole和JHDSDB随着JDK一同发布，不需要独立下载，可以直接使用。
 
 ### JHSDB：基于服务性代理的调试工具
 
@@ -74,6 +76,38 @@ JDK7及其以后版本的HotSpot虚拟机选择把静态变量与类型在Java�
 
 ### JConsole：Java监视与管理控制台
 
+是一款基于JMX(Java Management Extensions)的可视化监视、管理工具 。它的主要功能是通过JMX的MBean对系统进行信息收集和参数动态调整。  
+JMX是一种开放性的技术，不仅可以用来虚拟机本身的管理上，还可以运行于虚拟机之上的软件中。  
+虚拟机对JMX MBean的访问也是完全开放的，可以使用代码调用API、支持JMX协议的管理控制台，或者其他符合JMX规范的软件进行访问。
+
 ### VisualVM:多合一故障处理工具
-[VisualVM下载](https://visualvm.github.io/)
+
+[VisualVM下载](https://visualvm.github.io/)  
+VisualVM是功能最强大的运行监视和故障处理程序之一，不需要被监视的程序基于特殊Agent去运行，因此它的通用性很强，对应用程序实际性能影响也比较小，使得它可以直接应用在生产环境中。  
+Idea有 VisualVM启动器插件，当电脑本地安装了VisualVM时，通过插件指定后，在开发过程中，可以以有VisualVM的debug模式启动程序，进而监控程序的状态。
+
+### Java Mission Control：可持续在线的监控工具
+
+Oracle公司还开辟过带商业技术支持的Oracle Java SE Support和面向独立软件供应商的Oracle Java SE Advanced & Suite。  
+Oracle Java SE Advanced & Suite与普通的Oracle Java SE在功能上的主要差别是前者包含了一系列的监控、管理工具，
+譬如用于企业JRE定制管理的AMC控制台、JUT跟踪系统、用于持续收集数据的JFR飞行记录仪、用于监控Java虚拟机的JMC。 这些功能需要商业授权才能在生产环境中使用，但**根据Oracle Binary
+Code协议，在个人开发环境中，允许使用JMC和JFR。**
+
+## HotSpot虚拟机插件及工具
+
+### HSDIS：JIT生成代码反汇编
+
+在《Java虚拟机规范》里详细定义了虚拟机指令集总每条指令的语义，尤其是执行过程前后对操作数栈，局部变量表的影响。  
+这些细节描述与早期的Java虚拟机高度吻合，随着技术的发展，高性能虚拟机真正的细节实现方式与描述内容的偏差越来远大，
+《Java虚拟机规范》中的规定逐渐成为Java虚拟机实现的“概念模型”，即实现只保证与规范描述等效，而不一定是按照规范描述去执行。  
+由于这个原因，在讨论程序的执行语义问题（虚拟机做了什么）时，在字节码层面上分析完全可行，但讨论程序的执行行为问题（虚拟机是怎样做的）时，在字节码层面上分析就没有意义。
+
+HSDIS是一个被官方推荐的HotSpot虚拟机即时编译代码的反汇编插件，它包含在HotSpot虚拟机的源码当中。  
+HSDIS插件的作用是让HotSpot的-XX:+PrintAssembly指令调用它来吧即时编译器动态生成的本地代码还原为汇编代码输出，同时还会产生大量非常有价值的注释，这样就可以通过输出的汇编代码来从最本质的角度分析问题。
+
+JITWatch：是HSDIS经常搭配使用的可视化编译日志分析工具。
+
+## 本章小结
+
+介绍了6个命令行工具和4个可视化故障处理工具。 但是这些工具只是简单的了解了一下，怎么拿来去分析程序解决问题还是不知道。
 
