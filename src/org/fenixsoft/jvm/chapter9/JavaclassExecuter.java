@@ -20,7 +20,7 @@ public class JavaclassExecuter {
     public static String execute(byte[] classByte) {
         HackSystem.clearBuffer();
         ClassModifier cm = new ClassModifier(classByte);
-        byte[] modiBytes = cm.modifyUTF8Constant("java/lang/System", "org/fenixsoft/classloading/execute/HackSystem");
+        byte[] modiBytes = cm.modifyUTF8Constant("java/lang/System", "org/fenixsoft/jvm/chapter9/HackSystem");
         HotSwapClassLoader loader = new HotSwapClassLoader();
         Class clazz = loader.loadByte(modiBytes);
         try {
